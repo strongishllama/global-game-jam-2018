@@ -14,8 +14,8 @@ public class LevelManager : MonoBehaviour
         }
         else if (instance != this)
         {
+            Debug.Log(gameObject.name + " singleton instance was destroyed because a second one was created.");
             Destroy(gameObject);
-            Debug.Log(gameObject + " singleton instance was destroyed because a second one was created.");
         }
     }
 }
