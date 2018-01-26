@@ -8,6 +8,9 @@ public class Car : MonoBehaviour {
     int z;
     int PlayerNumber;
     public float SpeedLostOnTurn;
+    Vector3 Velocity;
+    public float Drag;
+    Vector3 DragV3;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,8 +19,11 @@ public class Car : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Speed += Acceleration * Time.deltaTime;
-        transform.position += transform.up * Speed * Time.deltaTime;
-
+        Velocity += transform.up * Speed * Time.deltaTime;
+        transform.position += Velocity * Time.deltaTime ;
+        Velocity -= DragV3;
+        DragV3 = new Vector3(Drag * Time.deltaTime, Drag * Time.deltaTime, 0);
+        
        if (Input.GetButtonDown("Fire1"))
         {
             if (z == 270)
@@ -25,7 +31,7 @@ public class Car : MonoBehaviour {
             else
                 z += 90;
 
-            Speed -= SpeedLostOnTurn;
+            Speed *= SpeedLostOnTurn;
             transform.rotation = Quaternion.Euler(0, 0, z);
 
         }
