@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class NetworkTransmitter : NetworkBehaviour {
+public class NetworkTransmitter : NetworkBehaviour
+{
 
     NetworkClient mClient;
 	// Use this for initialization
