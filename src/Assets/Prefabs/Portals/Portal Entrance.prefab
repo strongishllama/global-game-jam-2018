@@ -404,7 +404,7 @@ MonoBehaviour:
   portalExitEffect: {fileID: 0}
   portalLight: {fileID: 1020817048517708}
   exit: {fileID: 0}
-  exitDirection: 0
+  exitDirection: 3
 --- !u!198 &198271813899369170
 ParticleSystem:
   m_ObjectHideFlags: 1

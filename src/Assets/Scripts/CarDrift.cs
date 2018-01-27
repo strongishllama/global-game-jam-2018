@@ -38,17 +38,19 @@ public class CarDrift : MonoBehaviour {
     private GameObject carExplosion;
 
     void Start() {
-        m_CurrentDirection = LevelManager.instance.GetCurrentLevel().dir;
-        m_StartingPosition = transform.position;
-        m_StartingRotation = transform.rotation.eulerAngles;
-        updateDirection();
-
         WallCollision wc = GetComponent<WallCollision>();
         if (wc != null) {
             wc.m_LeaveRoadEvent.AddListener(playerOffTracks);
         } else {
             Debug.LogWarning("Player does not have a Wall Collision Script Component");
         }
+
+        m_CurrentDirection = LevelManager.instance.GetCurrentLevel().dir;
+        m_StartingPosition = transform.position;
+        m_StartingRotation = transform.rotation.eulerAngles;
+        updateDirection();
+
+
 
     }
 
@@ -184,15 +186,15 @@ public class CarDrift : MonoBehaviour {
 
     public void playerOffTracks() {
 
-        if (m_health > 0 && false)
-        {
-            m_health--;
-
-            // put wheel bounce code here.
-            // surly not
-        }
-        else
-        {
+       //if (m_health > 0 && false)
+       //{
+       //    m_health--;
+       //
+       //    // put wheel bounce code here.
+       //    // surly not
+       //}
+       //else
+       //{
             if (carExplosion != null)
             {
                 GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
@@ -204,7 +206,7 @@ public class CarDrift : MonoBehaviour {
             transform.position = m_StartingPosition;
             m_Velocity = Vector3.zero;
             updateDirection();
-        }
+        //}
     }
 
 
