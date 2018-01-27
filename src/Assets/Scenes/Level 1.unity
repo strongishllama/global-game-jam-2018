@@ -1298,7 +1298,10 @@ MonoBehaviour:
   m_MaxSpeed: 5
   m_VelocityDamp: 0.98
   m_SmoothVelocityDamp: 0.1
+  m_SpeedMovedFromTurn: 0.5
   m_StartingDirection: 3
+  deathExplosion: {fileID: 1645608971708332, guid: 39cd147cb2a89b24d86550f4e555ec2a,
+    type: 2}
 --- !u!114 &2089798056
 MonoBehaviour:
   m_ObjectHideFlags: 0
