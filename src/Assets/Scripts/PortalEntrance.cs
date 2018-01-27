@@ -21,6 +21,9 @@ public class PortalEntrance : MonoBehaviour
     [SerializeField]
     private Transform exit;
 
+    [SerializeField]
+    private Direction exitDirection;
+
     private UnityEvent enterPortal;
 
     private void Awake()
@@ -49,6 +52,8 @@ public class PortalEntrance : MonoBehaviour
 
     private IEnumerator ActivatePortal(Collider other)
     {
+        other.GetComponent<CarDrift>().updateDirection(exitDirection);
+
         portalIsActive = false;
         portalEntranceEffect.SetActive(true);
         portalLight.SetActive(false);

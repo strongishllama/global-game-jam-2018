@@ -70,11 +70,12 @@ public class CarDrift : MonoBehaviour {
                 if(Mathf.Abs(newVel.y) < 1.5f) {
                     newVel.y *= .95f;
                 }
-                print("Vel: "+newVel.y);
                 break;
         }
+
         m_Velocity = newVel;
         speedTaken -= newVel;
+
         {
             float tempY = speedTaken.y;
             speedTaken.y = speedTaken.x;
@@ -82,7 +83,6 @@ public class CarDrift : MonoBehaviour {
             speedTaken *= m_SpeedMovedFromTurn;
             
         }
-        print(speedTaken);
 
         m_Velocity += transform.up * m_Acceleration * Time.deltaTime + speedTaken;
 
@@ -136,8 +136,10 @@ public class CarDrift : MonoBehaviour {
     }
 
     public void playerOffTracks() {
-        GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
-        Destroy(explosion, 4.0f);
+        if (carExplosion != null) {
+            GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
+            Destroy(explosion, 4.0f);
+        }
         m_CurrentDirection = m_StartingDirection;
         transform.position = m_StartingPosition;
         m_Velocity = Vector3.zero;
