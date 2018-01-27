@@ -30,7 +30,7 @@ public class CarDrift : MonoBehaviour {
     public float m_SpeedMovedFromTurn = 0.5f;
     
     private Vector3 m_StartingPosition;
-
+    public int m_health = 3;
     [SerializeField]
     private GameObject carExplosion;
 
@@ -144,14 +144,24 @@ public class CarDrift : MonoBehaviour {
     }
 
     public void playerOffTracks() {
-        if (carExplosion != null) {
-            GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
-            Destroy(explosion, 4.0f);
+        if (m_health > 0)
+        {
+            m_health--;
+
+            // put wheel bounce code here.
         }
-        m_CurrentDirection = LevelManager.instance.m_levelinfo[;
-        transform.position = m_StartingPosition;
-        m_Velocity = Vector3.zero;
-        updateDirection();
+        else
+        {
+            if (carExplosion != null && m_health <= 0)
+            {
+                GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
+                Destroy(explosion, 4.0f);
+            }
+            m_CurrentDirection = LevelManager.instance.m_levelinfo[0].dir;
+            transform.position = m_StartingPosition;
+            m_Velocity = Vector3.zero;
+            updateDirection();
+        }
     }
 
 

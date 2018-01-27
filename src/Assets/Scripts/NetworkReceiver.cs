@@ -18,11 +18,11 @@ public class NetworkReceiver:NetworkManager {
     private void Start() {
 
         autoCreatePlayer = false;
-        NetworkServer.Listen(7777);
         networkAddress = LocalIpAddress();
         StartHost();
         Debug.Log(LocalIpAddress());
         NetworkServer.RegisterHandler(MsgType.Highest + 1,HandleMessage);
+        this.gameObject.AddComponent<BroadcastMessage>();
     }
 
     public string LocalIpAddress() {
@@ -88,6 +88,14 @@ public class NetworkReceiver:NetworkManager {
     }
 }
 
+public class BroadcastMessage : NetworkDiscovery {
+
+    public void Awake() {
+        showGUI = false;
+        Initialize();
+        StartAsServer();
+    }
+}
 public class InputMessageType {
     public static short Input = MsgType.Highest + 1;
 }
