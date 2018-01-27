@@ -431,7 +431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
   showGUI: 1
-  offsetX: 0
+  offsetX: 63
   offsetY: 0
 --- !u!4 &499890898
 Transform:
