@@ -11,10 +11,16 @@ public class InputMessage:MessageBase {
 public class ColourMessage:MessageBase {
     public Color color;
 }
+//for receiver
 public class BroadcastMessage:NetworkDiscovery {
 
     public void Awake() {
         showGUI = false;
+        Initialize();
+        StartAsServer();
+    }
+
+    public void StartBroadcasting() {
         Initialize();
         StartAsServer();
     }

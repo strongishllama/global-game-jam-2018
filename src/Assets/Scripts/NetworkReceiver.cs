@@ -46,30 +46,43 @@ public class NetworkReceiver:NetworkManager {
 
         //If new highest ID means a new player has joined. Give them a car.
         if(msg.conn.connectionId > highestID) {
-            GameObject NewCar = Instantiate(CarInstance,GetSpawnPoint(),CarInstance.transform.rotation);
-            NewCar.GetComponent<CarDrift>().SetNetworked();
-            players.Add(NewCar.GetComponent<CarDrift>());
-            highestID = msg.conn.connectionId; // Set highest id so 1 car per player
+
         } else
             players[msg.conn.connectionId - 1].SetButton(); // turn player
     }
 
-    // public override void OnServerConnect(NetworkConnection conn) {
-    //     
-    //     //mClient = new NetworkClient();
-    //     //mClient.RegisterHandler(MsgType.Highest,HandleMessage);
-    //     //mClient.Connect("127.0.0.1",7777);
-    //
-    //     Debug.LogError(conn.address);
-    // }
-
     //When a client connects
     void OnConnected(NetworkMessage msg) {
-        ColourMessage message = new ColourMessage {
-            color = new Color(50,0,0,1)
-        };
+
+        //If new highest ID means a new player has joined. Give them a car.
+        if(msg.conn.connectionId > highestID) {
+            GameObject NewCar = Instantiate(CarInstance,GetSpawnPoint(),CarInstance.transform.rotation);
+            NewCar.GetComponent<CarDrift>().SetNetworked();
+            players.Add(NewCar.GetComponent<CarDrift>());
+            highestID = msg.conn.connectionId; // Set highest id so 1 car per player
+        }
+
+
+        ColourMessage message = new ColourMessage();
+        switch(msg.conn.connectionId) {
+        case 1:
+        message.color = Color.red;
+        break;
+        case 2:
+        message.color = Color.blue;
+        break;
+        case 3:
+        message.color = Color.green;
+        break;
+        case 4:
+        message.color = Color.magenta;
+        break;
+        default:
+        this.GetComponent<BroadcastMessage>().StopBroadcast();
+        break;
+        }
         Debug.Log(msg.conn.address);
-        NetworkServer.SendToClient(msg.conn.connectionId, InputMessageType.PlayerColour, message);
+        NetworkServer.SendToClient(msg.conn.connectionId,InputMessageType.PlayerColour,message);
     }
 
     void OnError(NetworkMessage msg) {
