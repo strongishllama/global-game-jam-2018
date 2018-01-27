@@ -73,7 +73,7 @@ public class NetworkReceiver:NetworkManager {
         Debug.Log("Error");
     }
 
-    private Vector3 GetSpawnPoint()
+    public Vector3 GetSpawnPoint()
     {
         for (int i = 0; i < spawnPoints.Count; i++)
         {

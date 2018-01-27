@@ -29,6 +29,25 @@ public class DebugManager : MonoBehaviour
         {
             ForceQuit();
         }
+
+        if (Input.GetKeyDown(KeyCode.P)) 
+        {
+            var cars = GameObject.FindObjectsOfType<CarDrift>();
+            if (cars.Length <= 4) {
+                bool hasLocalPlayer = false;
+                for (int i = 0; i < cars.Length; i++) {
+                    if (!cars[i].m_IsNetworkedCar) {
+                        hasLocalPlayer = true;
+                        break;
+                    }
+                }
+                if (!hasLocalPlayer) {
+                    NetworkReceiver nr = FindObjectOfType<NetworkReceiver>();
+                    GameObject NewCar = Instantiate(nr.CarInstance, nr.GetSpawnPoint(), nr.CarInstance.transform.rotation);
+                    //nr.players.Add(NewCar.GetComponent<CarDrift>());
+                }
+            }
+        }
     }
 
     private void Reset()

@@ -12,7 +12,7 @@ public enum Direction {
 public class CarDrift : MonoBehaviour {
 
     bool ButtonPressed = false; public void SetButton() { ButtonPressed = true; }
-    bool m_IsNetworkedCar = false; public void SetNetworked() { m_IsNetworkedCar = true; }
+    public bool m_IsNetworkedCar = false; public void SetNetworked() { m_IsNetworkedCar = true; }
     public float m_Acceleration = 5;
     public float m_MaxSpeed = 4;
 
@@ -30,6 +30,9 @@ public class CarDrift : MonoBehaviour {
     public float m_SpeedMovedFromTurn = 0.5f;
     
     private Vector3 m_StartingPosition;
+    private Vector3 m_StartingRotation;
+
+    
     public int m_health = 3;
     [SerializeField]
     private GameObject carExplosion;
@@ -37,6 +40,7 @@ public class CarDrift : MonoBehaviour {
     void Start() {
         m_CurrentDirection = LevelManager.levelOneStartDirection;
         m_StartingPosition = transform.position;
+        m_StartingRotation = transform.rotation.eulerAngles;
         updateDirection();
 
         WallCollision wc = GetComponent<WallCollision>();
@@ -45,6 +49,7 @@ public class CarDrift : MonoBehaviour {
         } else {
             Debug.LogWarning("Player does not have a Wall Collision Script Component");
         }
+
     }
 
     // Update is called once per frame
@@ -100,7 +105,13 @@ public class CarDrift : MonoBehaviour {
             transform.position = transform.position + m_Velocity * Time.deltaTime;
         }
 
-        if ((Input.GetButtonDown("Fire1") && !m_IsNetworkedCar) || ButtonPressed) {
+        bool keyPress = false;
+        if (!m_IsNetworkedCar) {
+            keyPress |= Input.GetButtonDown("Fire1");
+            keyPress |= Input.GetKeyDown(KeyCode.J);
+        }
+
+        if (keyPress || ButtonPressed) {
             //dog crap
             switch (m_CurrentDirection) {
                 case Direction.Up:
@@ -129,33 +140,65 @@ public class CarDrift : MonoBehaviour {
     public void updateDirection() {
         switch (m_CurrentDirection) {
             case Direction.Up:
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                break;
-            case Direction.Left:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
-                break;
-            case Direction.Down:
-                transform.rotation = Quaternion.Euler(0, 0, 180);
-                break;
-            case Direction.Right:
-                transform.rotation = Quaternion.Euler(0, 0, 270);
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                break;                                 
+            case Direction.Left:                        
+                transform.localRotation = Quaternion.Euler(0, 0, 90);
+                break;                                   
+            case Direction.Down:                         
+                transform.localRotation = Quaternion.Euler(0, 0, 180);
+                break;                                    
+            case Direction.Right:                         
+                transform.localRotation = Quaternion.Euler(0, 0, 270);
                 break;
         }
+        //switch (m_CurrentDirection) {
+        //    case Direction.Up:
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, m_StartingRotation.y, 0);
+        //        break;
+        //    case Direction.Left:
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, m_StartingRotation.y, 90);
+        //        break;
+        //    case Direction.Down:
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, m_StartingRotation.y, 180);
+        //        break;
+        //    case Direction.Right:
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, m_StartingRotation.y, 270);
+        //        break;
+        //}
+        //switch (m_CurrentDirection) {
+        //    case Direction.Up:
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, 0  , m_StartingRotation.z);
+        //        break;                                                               
+        //    case Direction.Left:                                                     
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, 90 , m_StartingRotation.z);
+        //        break;                                                              
+        //    case Direction.Down:                                                    
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, 180, m_StartingRotation.z);
+        //        break;                                                              
+        //    case Direction.Right:                                                    
+        //        transform.localRotation = Quaternion.Euler(m_StartingRotation.x, 270, m_StartingRotation.z);
+        //        break;
+        //}
     }
 
     public void playerOffTracks() {
-        if (m_health > 0)
+
+        if (m_health > 0 && false)
         {
             m_health--;
 
             // put wheel bounce code here.
+            // surly not
         }
         else
         {
-            if (carExplosion != null && m_health <= 0)
+            if (carExplosion != null)
             {
                 GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
                 Destroy(explosion, 4.0f);
+            }else {
+                Debug.LogWarning("Car Explosion missing");
             }
             m_CurrentDirection = LevelManager.instance.m_levelinfo[0].dir;
             transform.position = m_StartingPosition;
