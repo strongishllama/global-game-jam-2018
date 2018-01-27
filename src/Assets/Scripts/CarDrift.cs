@@ -19,8 +19,11 @@ public class CarDrift : MonoBehaviour {
 
     private Direction m_CurrentDirection;
 
-    [Range(0.5f, 1.0f)]
+    [Range(0.9f, 1.0f)]
     public float m_VelocityDamp = 0.95f;
+
+    [Range(0.0f, 0.2f)]
+    public float m_SmoothVelocityDamp = 0.1f;
 
     public Direction m_StartingDirection;
     private Vector3 m_StartingPosition;
@@ -46,12 +49,18 @@ public class CarDrift : MonoBehaviour {
             case Direction.Up:
             case Direction.Down:
                 //left right damp
-                newVel.x *= m_VelocityDamp;
+                // newVel.x *= m_VelocityDamp;
+                newVel.x = Mathf.SmoothDamp(newVel.x, 0.0f, ref newVel.x, m_SmoothVelocityDamp);
                 break;
             case Direction.Left:
             case Direction.Right:
                 //up down damp
-                newVel.y *= m_VelocityDamp;
+                newVel.y = Mathf.SmoothDamp(newVel.y, 0.0f, ref newVel.y, m_SmoothVelocityDamp);
+                //newVel.y = Mathf.Log(newVel.y) * m_MaxSpeed;
+                if(newVel.y < 1) {
+                    newVel.y *= m_VelocityDamp;
+                }
+                print("Vel: "+newVel.y);
                 break;
         }
         m_Velocity = newVel;
