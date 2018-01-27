@@ -10,9 +10,12 @@ public class NetworkTransmitter:NetworkManager {
     NetworkClient mClient;
     [SerializeField] InputField inputfield;
     InputMessage inputMessage;
+    ReceiveBroadcast broadcastReceiver;
     void Start() {
+        networkPort = 7776;
         inputMessage = new InputMessage();
         autoCreatePlayer = false;
+        broadcastReceiver = this.gameObject.AddComponent<ReceiveBroadcast>();
         // mClient = StartClient();
     }
 
@@ -30,20 +33,54 @@ public class NetworkTransmitter:NetworkManager {
     }
     public void NetworkStartClient(GameObject button) {
         networkAddress = inputfield.text;
-       // inputfield.gameObject.SetActive(false);
-       // button.SetActive(false);
-        mClient = StartClient();
+        if(!IsClientConnected()) {
+            broadcastReceiver.connected = false;
+            broadcastReceiver.Initialize();
+            broadcastReceiver.StartAsClient();
+        }
+        // inputfield.gameObject.SetActive(false);
+        // button.SetActive(false);
+        //mClient = StartClient();
 
     }
 
+    public void StartConnection() {
+        mClient = StartClient();
+    }
     public void SendInput() {
         //NetworkServer.SendToAll(InputMessageType.Input,new InputMessage());
         //Debug.Log(mClient);
-        mClient.Send(MsgType.Highest + 1,inputMessage);
+        mClient.Send(MsgType.Highest + 1,new InputMessage());
     }
 
     public override void OnClientConnect(NetworkConnection conn) {
         Debug.Log("Connected to server");
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn) {
+        Debug.LogError("Disconneceted");
+    }
+
+}
+
+public class ReceiveBroadcast:NetworkDiscovery {
+    NetworkTransmitter mManager;
+    public bool connected;
+    public void Awake() {
+        mManager = this.GetComponent<NetworkTransmitter>();
+        showGUI = true;
+        //Initialize();
+    }
+
+    public override void OnReceivedBroadcast(string fromAddress,string data) {
+        if(!connected) {
+            mManager.networkAddress = fromAddress;
+            Debug.LogError(fromAddress);
+            mManager.StartConnection();
+            connected = true;
+        }
+
+        //StopBroadcast();
     }
 
 }
