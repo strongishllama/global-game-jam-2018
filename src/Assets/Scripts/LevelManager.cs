@@ -3,20 +3,15 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    private int currentLevelIndex = int.MaxValue;
-
-    public const string levelOneSceneName = "Level 1";
-    public const string levelTwoSceneName = "Level 2";
-
-    public const Direction levelOneStartDirection = Direction.Right;
-    public const Direction levelTwoStartDirection = Direction.Right;
-
     [System.Serializable]
     public struct levelInfo
     {
         public Direction dir;
         public string lvlName;
     };
+
+    private int currentLevelIndex = int.MaxValue;
+
     public levelInfo[] m_levelinfo = new levelInfo[2];
 
     public static LevelManager instance;
@@ -34,7 +29,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private levelInfo GetCurrentLevel()
+    public levelInfo GetCurrentLevel()
     {
         return m_levelinfo[currentLevelIndex];
     }

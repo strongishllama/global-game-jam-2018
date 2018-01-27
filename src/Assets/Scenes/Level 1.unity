@@ -631,26 +631,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
-        type: 2}
-      propertyPath: m_levelinfo.Array.data[0].dir
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
-        type: 2}
-      propertyPath: m_levelinfo.Array.data[0].lvlName
-      value: Level 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
-        type: 2}
-      propertyPath: m_levelinfo.Array.data[1].dir
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
-        type: 2}
-      propertyPath: m_levelinfo.Array.data[1].lvlName
-      value: Level 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
   m_IsPrefabParent: 0
