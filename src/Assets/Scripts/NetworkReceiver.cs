@@ -12,6 +12,9 @@ public class NetworkReceiver:NetworkManager {
     [SerializeField]
     private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
+    [SerializeField]
+    private List<CarDrift> players = new List<CarDrift>();
+
     private void Start() {
 
         autoCreatePlayer = false;
@@ -45,10 +48,11 @@ public class NetworkReceiver:NetworkManager {
         {
            GameObject NewCar = Instantiate(CarInstance, GetSpawnPoint(), CarInstance.transform.rotation);
             NewCar.GetComponent<CarDrift>().SetNetworked();
+            players.Add(NewCar.GetComponent<CarDrift>());
             highestID = msg.conn.connectionId; // Set highest id so 1 car per player
         }
         else
-        transform.GetChild(msg.conn.connectionId - 1).GetComponent<CarDrift>().SetButton(); // turn player
+            players[msg.conn.connectionId - 1].SetButton(); // turn player
     }
 
     // public override void OnServerConnect(NetworkConnection conn) {

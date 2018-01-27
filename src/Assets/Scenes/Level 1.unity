@@ -631,6 +631,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
+        type: 2}
+      propertyPath: m_levelinfo.Array.data[0].dir
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
+        type: 2}
+      propertyPath: m_levelinfo.Array.data[0].lvlName
+      value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
+        type: 2}
+      propertyPath: m_levelinfo.Array.data[1].dir
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114958228771119998, guid: be8e5129c4f99494bbfc4c8a05be7768,
+        type: 2}
+      propertyPath: m_levelinfo.Array.data[1].lvlName
+      value: Level 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
   m_IsPrefabParent: 0
@@ -728,7 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131c97d9e5321f6478d108cfd10c9b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRotation: {x: -180, y: -90, z: 90}
+  spawnRotation: {x: 0, y: 0, z: 0}
 --- !u!4 &501903703 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 614ea66fbc1ad5b419525776ae45054f, type: 3}
@@ -924,7 +944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131c97d9e5321f6478d108cfd10c9b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRotation: {x: -180, y: -90, z: 90}
+  spawnRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &680580508
 Prefab:
   m_ObjectHideFlags: 0
@@ -1332,6 +1352,7 @@ MonoBehaviour:
   - {fileID: 469157728}
   - {fileID: 2089930157}
   - {fileID: 1532695351}
+  players: []
 --- !u!4 &938098846
 Transform:
   m_ObjectHideFlags: 0
@@ -1798,7 +1819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131c97d9e5321f6478d108cfd10c9b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRotation: {x: -180, y: -90, z: 90}
+  spawnRotation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1580643133
 Prefab:
   m_ObjectHideFlags: 0
@@ -2404,7 +2425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 131c97d9e5321f6478d108cfd10c9b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRotation: {x: -180, y: -90, z: 90}
+  spawnRotation: {x: 0, y: 0, z: 0}
 --- !u!4 &2105609192 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4193781748196700, guid: b79c1d2a186056e498b6281c7f39dd63,

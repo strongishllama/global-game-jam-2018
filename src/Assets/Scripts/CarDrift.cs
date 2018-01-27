@@ -28,15 +28,14 @@ public class CarDrift : MonoBehaviour {
 
     [Range(0.0f, 1.0f)]
     public float m_SpeedMovedFromTurn = 0.5f;
-
-    public Direction m_StartingDirection;
+    
     private Vector3 m_StartingPosition;
 
     [SerializeField]
     private GameObject carExplosion;
 
     void Start() {
-        m_CurrentDirection = m_StartingDirection;
+        m_CurrentDirection = LevelManager.levelOneStartDirection;
         m_StartingPosition = transform.position;
         updateDirection();
 
@@ -149,7 +148,7 @@ public class CarDrift : MonoBehaviour {
             GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
             Destroy(explosion, 4.0f);
         }
-        m_CurrentDirection = m_StartingDirection;
+        m_CurrentDirection = LevelManager.instance.m_levelinfo[;
         transform.position = m_StartingPosition;
         m_Velocity = Vector3.zero;
         updateDirection();
