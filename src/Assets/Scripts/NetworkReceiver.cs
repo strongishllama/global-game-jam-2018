@@ -11,7 +11,7 @@ public class NetworkReceiver:NetworkManager {
     private void Start() {
 
         autoCreatePlayer = false;
-        //NetworkServer.Listen(7777);
+        NetworkServer.Listen(7777);
         networkAddress = LocalIpAddress();
         
         Debug.Log(LocalIpAddress());
