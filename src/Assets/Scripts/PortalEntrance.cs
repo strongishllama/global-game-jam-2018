@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PortalEntrance : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PortalEntrance : MonoBehaviour
 
     [SerializeField]
     private Transform exit;
+
+    private UnityEvent enterPortal;
 
     private void Awake()
     {
@@ -62,9 +65,18 @@ public class PortalEntrance : MonoBehaviour
         other.gameObject.SetActive(true);
         yield return new WaitForSeconds(portalCooldown);
 
+        enterPortal.Invoke();
         portalEntranceEffect.SetActive(false);
         portalExitEffect.SetActive(false);
         portalLight.SetActive(true);
         portalIsActive = true;
+    }
+
+    public UnityEvent EnterPortal
+    {
+        get
+        {
+            return enterPortal;
+        }
     }
 }
