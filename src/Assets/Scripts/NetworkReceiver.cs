@@ -3,20 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class NetworkReceiver:NetworkBehaviour {
-
+public class NetworkReceiver:NetworkManager {
     NetworkClient mClient;
-    // Use this for initialization
-    void Start() {
+
+    private void Start() {
+
+        autoCreatePlayer = false;
+        var config = new ConnectionConfig();
+        config.AddChannel(QosType.ReliableSequenced);
+        config.AddChannel(QosType.Unreliable);
+        NetworkServer.Configure(config, 12);
+        StartHost();
+
+        mClient = new NetworkClient();
+        mClient.RegisterHandler(MsgType.Highest, HandleMessage);
+        mClient.Connect("127.0.0.1",7777);
 
     }
 
-    // Update is called once per frame
-    void Update() {
-        if(Input.anyKey) {
-            
-        }
+    void HandleMessage(NetworkMessage msg) {
+        var InputMessage = msg.ReadMessage<InputMessage>();
+        Debug.Log(msg.msgType);
     }
+
+    public override void OnServerConnect(NetworkConnection conn) {
+        mClient = new NetworkClient();
+        mClient.RegisterHandler(MsgType.Highest,HandleMessage);
+        mClient.Connect("127.0.0.1",7777);
+
+        Debug.LogError(conn.address);
+    }
+
+
 }
 
 
