@@ -85,6 +85,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4871077679874436}
+  - component: {fileID: 114706797557252628}
+  - component: {fileID: 114580275683992338}
   m_Layer: 0
   m_Name: Purple Player
   m_TagString: Untagged
@@ -648,3 +650,40 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114580275683992338
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611413197463864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a101210ea520b154c869bec434ccf75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Acceleration: 5
+  m_MaxSpeed: 4
+  m_VelocityDamp: 0.95
+  m_SmoothVelocityDamp: 0.1
+  m_SpeedMovedFromTurn: 0.5
+  m_StartingDirection: 0
+  carExplosion: {fileID: 0}
+--- !u!114 &114706797557252628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1611413197463864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c19ebae4a7c0da4da64f74fdd90880f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WheelHolderPosition: {fileID: 0}
+  m_RaycastRange: 5
+  m_WheelsAllowedOffRoad: 3
+  m_LeaveRoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null

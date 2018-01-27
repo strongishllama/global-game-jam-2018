@@ -153,6 +153,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4355274056303738}
   - component: {fileID: 111603789305589336}
+  - component: {fileID: 114216878598689988}
+  - component: {fileID: 114348447775058808}
   m_Layer: 0
   m_Name: Red Player
   m_TagString: Untagged
@@ -663,3 +665,40 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &114216878598689988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802840742440086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c19ebae4a7c0da4da64f74fdd90880f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WheelHolderPosition: {fileID: 0}
+  m_RaycastRange: 5
+  m_WheelsAllowedOffRoad: 3
+  m_LeaveRoadEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &114348447775058808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1802840742440086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a101210ea520b154c869bec434ccf75d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Acceleration: 5
+  m_MaxSpeed: 4
+  m_VelocityDamp: 0.95
+  m_SmoothVelocityDamp: 0.1
+  m_SpeedMovedFromTurn: 0.5
+  m_StartingDirection: 0
+  carExplosion: {fileID: 0}
