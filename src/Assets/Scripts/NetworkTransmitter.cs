@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 
 public class NetworkTransmitter:NetworkManager {
     // Use this for initialization
     NetworkClient mClient;
+    [SerializeField] InputField inputfield;
+    [SerializeField] Text text;
     void Start() {
         autoCreatePlayer = false;
-        mClient = StartClient();
+       // mClient = StartClient();
     }
 
     // Update is called once per frame
@@ -18,11 +21,16 @@ public class NetworkTransmitter:NetworkManager {
             Debug.Log("Sending message");
             SendInput();
         }
+        text.text = inputfield.text;
+    }
+    public void NetworkStartClient() {
+        networkAddress = inputfield.text;
+        mClient = StartClient();
     }
 
     public void SendInput() {
         //NetworkServer.SendToAll(InputMessageType.Input,new InputMessage());
-        mClient.Send(MsgType.Highest + 1, new InputMessage());
+        mClient.Send(MsgType.Highest + 1,new InputMessage());
     }
 
     public override void OnClientConnect(NetworkConnection conn) {
