@@ -28,7 +28,29 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+        switch (gameState)
+        {
+            case eGameState.PreGame:
+                {
+                    if (Input.GetKeyDown(KeyCode.Space))
+                    {
+                        gameState = eGameState.PlayingGame;
+                    }
+                    break;
+                }
+
+            case eGameState.PlayingGame:
+                {
+
+                    break;
+                }
+
+            case eGameState.PostGame:
+                {
+
+                    break;
+                }
+        }
     }
 
     public eGameState GameState
