@@ -6,7 +6,8 @@ using UnityEngine.Networking;
 public class NetworkStarter:NetworkManager {
 
     private void Start() {
-        StartHost();
+        //StartHost();
+        StartClient();
     }
 
 }
