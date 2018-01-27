@@ -9,8 +9,11 @@ public class NetworkTransmitter:NetworkManager {
     // Use this for initialization
     NetworkClient mClient;
     [SerializeField] InputField inputfield;
+    [SerializeField] Button connectButton;
+    [SerializeField] Image phoneColour;
     InputMessage inputMessage;
     ReceiveBroadcast broadcastReceiver;
+
     void Start() {
         networkPort = 7776;
         inputMessage = new InputMessage();
@@ -21,14 +24,18 @@ public class NetworkTransmitter:NetworkManager {
 
     // Update is called once per frame
     void Update() {
+
+        connectButton.gameObject.SetActive(!IsClientConnected());
+
         if(Input.GetKeyDown(KeyCode.J)) {
             Debug.Log("Sending message");
             SendInput();
         }
-
-        // if (Input.GetTouch(0).phase == TouchPhase.Began) {
-        //     SendInput();
-        // }
+#if UNITY_ANDROID || UNITY_IOS
+        if (Input.GetTouch(0).phase == TouchPhase.Began) {
+            SendInput();
+        }
+#endif
 
     }
     public void NetworkStartClient(GameObject button) {
@@ -46,11 +53,19 @@ public class NetworkTransmitter:NetworkManager {
 
     public void StartConnection() {
         mClient = StartClient();
+        mClient.RegisterHandler(InputMessageType.PlayerColour, ColourHandler);
+        broadcastReceiver.StopBroadcast();
     }
+
     public void SendInput() {
         //NetworkServer.SendToAll(InputMessageType.Input,new InputMessage());
         //Debug.Log(mClient);
         mClient.Send(MsgType.Highest + 1,new InputMessage());
+    }
+
+    public void ColourHandler(NetworkMessage message) {
+        var PlayerColour = message.ReadMessage<ColourMessage>();
+        phoneColour.color = PlayerColour.color;
     }
 
     public override void OnClientConnect(NetworkConnection conn) {
@@ -58,33 +73,11 @@ public class NetworkTransmitter:NetworkManager {
     }
 
     public override void OnClientDisconnect(NetworkConnection conn) {
-        Debug.LogError("Disconneceted");
+        Debug.LogError("Disconnected");
     }
 
 }
 
-public class ReceiveBroadcast:NetworkDiscovery {
-    NetworkTransmitter mManager;
-    public bool connected;
-    public void Awake() {
-        mManager = this.GetComponent<NetworkTransmitter>();
-        showGUI = true;
-        //Initialize();
-    }
 
-    public override void OnReceivedBroadcast(string fromAddress,string data) {
-        if(!connected) {
-            mManager.networkAddress = fromAddress;
-            Debug.LogError(fromAddress);
-            mManager.StartConnection();
-            connected = true;
-        }
 
-        //StopBroadcast();
-    }
 
-}
-
-public class InputMessage:MessageBase {
-    //i mean its just an empty class
-}

@@ -22,6 +22,7 @@ public class NetworkReceiver:NetworkManager {
         StartHost();
         Debug.Log(LocalIpAddress());
         NetworkServer.RegisterHandler(MsgType.Highest + 1,HandleMessage);
+        NetworkServer.RegisterHandler(MsgType.Connect,OnConnected);
         this.gameObject.AddComponent<BroadcastMessage>();
     }
 
@@ -30,7 +31,7 @@ public class NetworkReceiver:NetworkManager {
         string localIP = "";
         host = Dns.GetHostEntry(Dns.GetHostName());
         foreach(IPAddress ip in host.AddressList) {
-            if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
+            if(ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) {
                 localIP = ip.ToString();
                 break;
             }
@@ -42,16 +43,14 @@ public class NetworkReceiver:NetworkManager {
         var InputMessage = msg.ReadMessage<InputMessage>();
         Debug.LogError("Msg received" + msg.msgType);
         Debug.LogError(msg.conn.connectionId);
-       
+
         //If new highest ID means a new player has joined. Give them a car.
-        if(msg.conn.connectionId > highestID)
-        {
-           GameObject NewCar = Instantiate(CarInstance, GetSpawnPoint(), CarInstance.transform.rotation);
+        if(msg.conn.connectionId > highestID) {
+            GameObject NewCar = Instantiate(CarInstance,GetSpawnPoint(),CarInstance.transform.rotation);
             NewCar.GetComponent<CarDrift>().SetNetworked();
             players.Add(NewCar.GetComponent<CarDrift>());
             highestID = msg.conn.connectionId; // Set highest id so 1 car per player
-        }
-        else
+        } else
             players[msg.conn.connectionId - 1].SetButton(); // turn player
     }
 
@@ -64,21 +63,22 @@ public class NetworkReceiver:NetworkManager {
     //     Debug.LogError(conn.address);
     // }
 
+    //When a client connects
     void OnConnected(NetworkMessage msg) {
-        Debug.Log("HGERFNMFJKEW");
+        ColourMessage message = new ColourMessage {
+            color = new Color(50,0,0,1)
+        };
+        Debug.Log(msg.conn.address);
+        NetworkServer.SendToClient(msg.conn.connectionId, InputMessageType.PlayerColour, message);
     }
 
-    void OnError(NetworkMessage msg)
-    {
+    void OnError(NetworkMessage msg) {
         Debug.Log("Error");
     }
 
-    private Vector3 GetSpawnPoint()
-    {
-        for (int i = 0; i < spawnPoints.Count; i++)
-        {
-            if (spawnPoints[i].IsEmpty)
-            {
+    private Vector3 GetSpawnPoint() {
+        for(int i = 0;i < spawnPoints.Count;i++) {
+            if(spawnPoints[i].IsEmpty) {
                 return spawnPoints[i].transform.position;
             }
         }
@@ -86,16 +86,6 @@ public class NetworkReceiver:NetworkManager {
         Debug.Log("Error: No free spawn points left.");
         return Vector3.zero;
     }
+
 }
 
-public class BroadcastMessage : NetworkDiscovery {
-
-    public void Awake() {
-        showGUI = false;
-        Initialize();
-        StartAsServer();
-    }
-}
-public class InputMessageType {
-    public static short Input = MsgType.Highest + 1;
-}
