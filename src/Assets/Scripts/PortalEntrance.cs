@@ -14,6 +14,8 @@ public class PortalEntrance : MonoBehaviour
     private GameObject portalEntranceEffect;
     [SerializeField]
     private GameObject portalExitEffect;
+    [SerializeField]
+    private GameObject portalLight;
 
     [SerializeField]
     private Transform exit;
@@ -51,6 +53,7 @@ public class PortalEntrance : MonoBehaviour
 
         portalIsActive = false;
         portalEntranceEffect.SetActive(true);
+        portalLight.SetActive(false);
         other.gameObject.SetActive(false);
         yield return new WaitForSeconds(portalTransferDelay);
 
@@ -61,6 +64,7 @@ public class PortalEntrance : MonoBehaviour
 
         portalEntranceEffect.SetActive(false);
         portalExitEffect.SetActive(false);
+        portalLight.SetActive(true);
         portalIsActive = true;
     }
 }
