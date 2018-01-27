@@ -13,7 +13,7 @@ public class NetworkReceiver:NetworkManager {
         autoCreatePlayer = false;
         NetworkServer.Listen(7777);
         networkAddress = LocalIpAddress();
-        
+        StartHost();
         Debug.Log(LocalIpAddress());
         NetworkServer.RegisterHandler(MsgType.Highest + 1,HandleMessage);
     }
@@ -39,7 +39,8 @@ public class NetworkReceiver:NetworkManager {
         //If new highest ID means a new player has joined. Give them a car.
         if(msg.conn.connectionId > highestID)
         {
-            Instantiate(CarInstance,transform, false);
+           GameObject NewCar = Instantiate(CarInstance,transform, false);
+            NewCar.GetComponent<CarDrift>().SetNetworked();
             highestID = msg.conn.connectionId; // Set highest id so 1 car per player
         }
         else

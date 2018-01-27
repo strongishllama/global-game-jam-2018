@@ -8,8 +8,6 @@ public class WallCollision : MonoBehaviour {
 
     public Transform m_WheelHolderPosition;
 
-    public Material m_Map;
-
     [Range(0, 10)]
     public float m_RaycastRange = 5;
 
@@ -61,10 +59,11 @@ public class WallCollision : MonoBehaviour {
         RaycastHit hit;
         Debug.DrawRay(a_Position, Vector3.forward * m_RaycastRange);
         if (Physics.Raycast(a_Position, Vector3.forward, out hit, m_RaycastRange)) {
-            int width = Mathf.FloorToInt(m_Map.mainTexture.width * hit.textureCoord.x);
-            int height = Mathf.FloorToInt(m_Map.mainTexture.height * hit.textureCoord.y);
+            Material hitMaterial = hit.transform.GetComponent<MeshRenderer>().material;
+            int width = Mathf.FloorToInt(hitMaterial.mainTexture.width * hit.textureCoord.x);
+            int height = Mathf.FloorToInt(hitMaterial.mainTexture.height * hit.textureCoord.y);
              
-            Color col = ((Texture2D)m_Map.mainTexture).GetPixel(width, height);
+            Color col = ((Texture2D)hitMaterial.mainTexture).GetPixel(width, height);
 
             float color = col.r + col.g + col.b;
 
