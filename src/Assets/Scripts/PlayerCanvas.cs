@@ -17,6 +17,9 @@ public class PlayerCanvas : MonoBehaviour
     [SerializeField]
     private Text winnerDisplay;
 
+    [SerializeField]
+    private GameObject networkReceiver;
+
     public static PlayerCanvas instance;
 
     private void Awake()
