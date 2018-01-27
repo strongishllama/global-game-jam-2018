@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c19ebae4a7c0da4da64f74fdd90880f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WheelHolderPosition: {fileID: 0}
+  m_WheelHolderPosition: {fileID: 4572683448942078}
   m_RaycastRange: 5
   m_WheelsAllowedOffRoad: 3
   m_LeaveRoadEvent:
@@ -686,4 +686,5 @@ MonoBehaviour:
   m_SmoothVelocityDamp: 0.1
   m_SpeedMovedFromTurn: 0.5
   m_StartingDirection: 0
-  carExplosion: {fileID: 0}
+  carExplosion: {fileID: 1645608971708332, guid: 39cd147cb2a89b24d86550f4e555ec2a,
+    type: 2}

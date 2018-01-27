@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 
+public enum eGameState
+{
+    PreGame,
+    PlayingGame,
+    PostGame
+}
+
 public class GameManager : MonoBehaviour
 {
-    private bool gameIsRunning = false;
+    private eGameState gameState = eGameState.PreGame;
 
     public static GameManager instance;
 
@@ -19,15 +26,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public bool GameIsRunning
+    private void Update()
+    {
+        
+    }
+
+    public eGameState GameState
     {
         get
         {
-            return gameIsRunning;
+            return gameState;
         }
         set
         {
-            gameIsRunning = value;
+            gameState = value;
         }
     }
 }

@@ -152,7 +152,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4355274056303738}
-  - component: {fileID: 111603789305589336}
   - component: {fileID: 114216878598689988}
   - component: {fileID: 114348447775058808}
   m_Layer: 0
@@ -651,20 +650,6 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!111 &111603789305589336
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1802840742440086}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114216878598689988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -676,7 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c19ebae4a7c0da4da64f74fdd90880f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WheelHolderPosition: {fileID: 0}
+  m_WheelHolderPosition: {fileID: 4693866444474864}
   m_RaycastRange: 5
   m_WheelsAllowedOffRoad: 3
   m_LeaveRoadEvent:
@@ -701,4 +686,5 @@ MonoBehaviour:
   m_SmoothVelocityDamp: 0.1
   m_SpeedMovedFromTurn: 0.5
   m_StartingDirection: 0
-  carExplosion: {fileID: 0}
+  carExplosion: {fileID: 1645608971708332, guid: 39cd147cb2a89b24d86550f4e555ec2a,
+    type: 2}

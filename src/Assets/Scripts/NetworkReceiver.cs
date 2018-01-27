@@ -8,6 +8,10 @@ public class NetworkReceiver:NetworkManager {
     NetworkClient mClient;
     int highestID = 0;
     public GameObject CarInstance;
+
+    [SerializeField]
+    private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
+
     private void Start() {
 
         autoCreatePlayer = false;
@@ -39,7 +43,7 @@ public class NetworkReceiver:NetworkManager {
         //If new highest ID means a new player has joined. Give them a car.
         if(msg.conn.connectionId > highestID)
         {
-           GameObject NewCar = Instantiate(CarInstance,transform, false);
+           GameObject NewCar = Instantiate(CarInstance, GetSpawnPoint(), CarInstance.transform.rotation);
             NewCar.GetComponent<CarDrift>().SetNetworked();
             highestID = msg.conn.connectionId; // Set highest id so 1 car per player
         }
@@ -60,15 +64,26 @@ public class NetworkReceiver:NetworkManager {
         Debug.Log("HGERFNMFJKEW");
     }
 
-    void OnError(NetworkMessage msg) {
+    void OnError(NetworkMessage msg)
+    {
         Debug.Log("Error");
     }
 
-}
+    private Vector3 GetSpawnPoint()
+    {
+        for (int i = 0; i < spawnPoints.Count; i++)
+        {
+            if (spawnPoints[i].IsEmpty)
+            {
+                return spawnPoints[i].transform.position;
+            }
+        }
 
+        Debug.Log("Error: No free spawn points left.");
+        return Vector3.zero;
+    }
+}
 
 public class InputMessageType {
     public static short Input = MsgType.Highest + 1;
 }
-
-
