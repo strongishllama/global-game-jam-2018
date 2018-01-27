@@ -231,6 +231,11 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 591558657}
+    - target: {fileID: 114456507067166040, guid: 96577983186a8814980276ba4a142366,
+        type: 2}
+      propertyPath: dampSmoothTime
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96577983186a8814980276ba4a142366, type: 2}
   m_IsPrefabParent: 0
