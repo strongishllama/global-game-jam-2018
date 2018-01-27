@@ -13,7 +13,7 @@ public class NetworkReceiver:NetworkManager {
         autoCreatePlayer = false;
         NetworkServer.Listen(7777);
         networkAddress = LocalIpAddress();
-        
+        StartHost();
         Debug.Log(LocalIpAddress());
         NetworkServer.RegisterHandler(MsgType.Highest + 1,HandleMessage);
     }
