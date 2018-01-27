@@ -21,6 +21,8 @@ public class WallCollision : MonoBehaviour {
     /// </summary>
     private bool m_CurrentlyOnRoad = true;
 
+    private Vector3 m_Offset = new Vector3(0, 0, -1);
+
     void Awake() {
         m_LeaveRoadEvent.AddListener(LeaveRoadTest);
 
@@ -35,12 +37,11 @@ public class WallCollision : MonoBehaviour {
         bool previousOnRoad = m_CurrentlyOnRoad;
         int hits = 0;
         for(int i = 0; i < m_WheelHolderPosition.childCount; i++) {
-            if (TestPoint(m_WheelHolderPosition.GetChild(i).position)) {
+            if (TestPoint(m_WheelHolderPosition.GetChild(i).position + m_Offset)) {
                 hits++;
             }
         }
-
-        m_CurrentlyOnRoad = hits < (m_WheelHolderPosition.childCount - m_WheelsAllowedOffRoad);
+        m_CurrentlyOnRoad = hits < (m_WheelHolderPosition.childCount - m_WheelsAllowedOffRoad) || hits == 0;
 
         if (m_CurrentlyOnRoad) {
             if (previousOnRoad != m_CurrentlyOnRoad) {

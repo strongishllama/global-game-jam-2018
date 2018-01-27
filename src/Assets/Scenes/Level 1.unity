@@ -1327,6 +1327,11 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   CarInstance: {fileID: 1749118606317396, guid: d4d42516a10591147b0ca915223ead41,
     type: 2}
+  PlayerCars:
+  - {fileID: 1367219887892998, guid: 12fa9366f3a43e540b76f8dab890b79f, type: 2}
+  - {fileID: 1749118606317396, guid: d4d42516a10591147b0ca915223ead41, type: 2}
+  - {fileID: 1611413197463864, guid: 38e282d915450ca46bda54676a7bbdc3, type: 2}
+  - {fileID: 1802840742440086, guid: b91fb49a858f6494cb56e1cec895e0b6, type: 2}
   spawnPoints:
   - {fileID: 677883509}
   - {fileID: 469157728}

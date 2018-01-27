@@ -31,6 +31,6 @@ public class LevelManager : MonoBehaviour
 
     public levelInfo GetCurrentLevel()
     {
-        return m_levelinfo[currentLevelIndex];
+        return m_levelinfo[0];
     }
 }
