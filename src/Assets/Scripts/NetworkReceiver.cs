@@ -9,6 +9,7 @@ public class NetworkReceiver:NetworkManager {
     int highestID = 0;
     public GameObject CarInstance;
 
+    public GameObject[] PlayerCars;
     [SerializeField]
     private List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
 
@@ -56,7 +57,8 @@ public class NetworkReceiver:NetworkManager {
 
         //If new highest ID means a new player has joined. Give them a car.
         if(msg.conn.connectionId > highestID) {
-            GameObject NewCar = Instantiate(CarInstance,GetSpawnPoint(),CarInstance.transform.rotation);
+            GameObject NewCar = Instantiate(PlayerCars[msg.conn.connectionId - 1],GetSpawnPoint(),PlayerCars[msg.conn.connectionId - 1].transform.rotation);
+
             NewCar.GetComponent<CarDrift>().SetNetworked();
             players.Add(NewCar.GetComponent<CarDrift>());
             highestID = msg.conn.connectionId; // Set highest id so 1 car per player
@@ -66,16 +68,16 @@ public class NetworkReceiver:NetworkManager {
         ColourMessage message = new ColourMessage();
         switch(msg.conn.connectionId) {
         case 1:
-        message.color = Color.red;
-        break;
-        case 2:
         message.color = Color.blue;
         break;
+        case 2:
+        message.color = new Color32(255, 165, 0, 255);
+        break;
         case 3:
-        message.color = Color.green;
+        message.color = new Color32(128, 0, 128, 255);
         break;
         case 4:
-        message.color = Color.magenta;
+        message.color = Color.red;
         break;
         default:
         this.GetComponent<BroadcastMessage>().StopBroadcast();
@@ -95,6 +97,7 @@ public class NetworkReceiver:NetworkManager {
         {
             if (spawnPoints[i].IsEmpty)
             {
+                spawnPoints[i].IsEmpty = false;
                 return spawnPoints[i].transform.position;
             }
         }
