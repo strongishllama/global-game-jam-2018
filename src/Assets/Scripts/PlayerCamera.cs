@@ -3,7 +3,11 @@
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField]
+    private float dampSmoothTime = 0.5f;
+
+    [SerializeField]
     private Vector3 offset;
+    private Vector3 velocity;
 
     [SerializeField]
     private Transform player;
@@ -24,6 +28,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Update()
     {
-        transform.position = player.position + offset;
+        Vector3 targetPosition = player.position + offset;
+        transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, dampSmoothTime);
     }
 }
