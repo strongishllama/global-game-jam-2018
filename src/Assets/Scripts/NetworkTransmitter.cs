@@ -13,7 +13,7 @@ public class NetworkTransmitter:NetworkManager {
     void Start() {
         inputMessage = new InputMessage();
         autoCreatePlayer = false;
-       // mClient = StartClient();
+        // mClient = StartClient();
     }
 
     // Update is called once per frame
@@ -23,22 +23,23 @@ public class NetworkTransmitter:NetworkManager {
             SendInput();
         }
 
-        if (Input.GetTouch(0).phase == TouchPhase.Began) {
-            SendInput();
-        }
+        // if (Input.GetTouch(0).phase == TouchPhase.Began) {
+        //     SendInput();
+        // }
 
     }
     public void NetworkStartClient(GameObject button) {
         networkAddress = inputfield.text;
-        inputfield.gameObject.SetActive(false);
-        button.SetActive(false);
+       // inputfield.gameObject.SetActive(false);
+       // button.SetActive(false);
         mClient = StartClient();
 
     }
 
     public void SendInput() {
         //NetworkServer.SendToAll(InputMessageType.Input,new InputMessage());
-        mClient.Send(MsgType.Highest + 1, inputMessage);
+        //Debug.Log(mClient);
+        mClient.Send(MsgType.Highest + 1,inputMessage);
     }
 
     public override void OnClientConnect(NetworkConnection conn) {
