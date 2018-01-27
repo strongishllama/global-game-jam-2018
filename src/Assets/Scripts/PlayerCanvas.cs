@@ -14,6 +14,8 @@ public class PlayerCanvas : MonoBehaviour
     private Text timeDisplay;
     [SerializeField]
     private Text lapDisplay;
+    [SerializeField]
+    private Text winnerDisplay;
 
     public static PlayerCanvas instance;
 
@@ -33,6 +35,18 @@ public class PlayerCanvas : MonoBehaviour
         {
             Debug.Log("Warning:" + gameObject.name + " does not have an time display assigned.");
         }
+
+        if (lapDisplay == null)
+        {
+            Debug.Log("Warning:" + gameObject.name + " does not have an lap display assigned.");
+        }
+
+        if (winnerDisplay == null)
+        {
+            Debug.Log("Warning:" + gameObject.name + " does not have an winner display assigned.");
+        }
+
+       lapDisplay.text = "Lap: " + currentLapCount + "/" + maxLapCount;
     }
 
     private void Update()
@@ -40,7 +54,6 @@ public class PlayerCanvas : MonoBehaviour
         if (GameManager.instance.GameIsRunning)
         {
             UpdateTimeDisplay();
-            UpdateLapDisplay();
         }
     }
 
@@ -50,14 +63,15 @@ public class PlayerCanvas : MonoBehaviour
         timeDisplay.text = "Time: " + Math.Round(timeElapsed, 1, MidpointRounding.ToEven);
     }
 
-    private void UpdateLapDisplay()
-    {
-        lapDisplay.text = "Lap: " + currentLapCount + "/" + maxLapCount;
-    }
-
     public void IncrementLapCount()
     {
         ++currentLapCount;
-        UpdateLapDisplay();
+        lapDisplay.text = "Lap: " + currentLapCount + "/" + maxLapCount;
+
+        if (currentLapCount >= maxLapCount)
+        {
+            winnerDisplay.text = "You Win!";
+            Time.timeScale = 0.0f;
+        }
     }
 }
