@@ -113,4 +113,25 @@ public class CarDrift : MonoBehaviour {
         m_Velocity = Vector3.zero;
         updateDirection();
     }
+
+
+    public void ResetVelocityFromDirection()
+    {
+        Vector3 newVel = m_Velocity;
+        //velocity damp
+        switch (m_CurrentDirection)
+        {
+            case Direction.Up:
+            case Direction.Down:
+                //left right damp
+                newVel.x = 0;
+                break;
+            case Direction.Left:
+            case Direction.Right:
+                //up down damp
+                newVel.y = 0;
+                break;
+        }
+        m_Velocity = newVel;
+    }
 }

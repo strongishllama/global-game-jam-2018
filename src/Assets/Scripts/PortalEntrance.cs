@@ -61,11 +61,11 @@ public class PortalEntrance : MonoBehaviour
         yield return new WaitForSeconds(portalTransferDelay);
 
         other.transform.position = exit.position;
+        other.GetComponent<CarDrift>().ResetVelocityFromDirection();
         portalExitEffect.SetActive(true);
         other.gameObject.SetActive(true);
         yield return new WaitForSeconds(portalCooldown);
 
-        enterPortal.Invoke();
         portalEntranceEffect.SetActive(false);
         portalExitEffect.SetActive(false);
         portalLight.SetActive(true);
