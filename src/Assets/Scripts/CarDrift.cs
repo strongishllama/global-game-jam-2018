@@ -11,7 +11,7 @@ public enum Direction {
 
 public class CarDrift : MonoBehaviour {
 
-
+    bool ButtonPressed = false; public void SetButton() { ButtonPressed = true; }
     public float m_Acceleration = 5;
     public float m_MaxSpeed = 4;
 
@@ -89,7 +89,7 @@ public class CarDrift : MonoBehaviour {
 
         transform.position = transform.position + m_Velocity * Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1") || ButtonPressed) {
             //dog crap
             switch (m_CurrentDirection) {
                 case Direction.Up:
@@ -105,7 +105,7 @@ public class CarDrift : MonoBehaviour {
                     m_CurrentDirection = Direction.Up;
                     break;
             }
-
+            ButtonPressed = false;
             updateDirection();
         }
     }
