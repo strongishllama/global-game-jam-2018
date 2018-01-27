@@ -128,7 +128,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff8e09d275955a24282fe1f3fc41b966, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  countdown: 3
   timeDisplay: {fileID: 114276328061824076}
+  countdownDisplay: {fileID: 0}
 --- !u!222 &222290926871846438
 CanvasRenderer:
   m_ObjectHideFlags: 1

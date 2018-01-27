@@ -19,11 +19,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        gameIsRunning = true;
-    }
-
     public bool GameIsRunning
     {
         get
