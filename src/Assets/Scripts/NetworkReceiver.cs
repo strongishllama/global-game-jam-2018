@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 
 public class NetworkReceiver:NetworkManager {
     NetworkClient mClient;
-
+    int highestID = 0;
+    public GameObject CarInstance;
     private void Start() {
 
         autoCreatePlayer = false;
@@ -18,7 +19,15 @@ public class NetworkReceiver:NetworkManager {
         var InputMessage = msg.ReadMessage<InputMessage>();
         Debug.LogError("Msg received" + msg.msgType);
         Debug.LogError(msg.conn.connectionId);
-
+       
+        //If new highest ID means a new player has joined. Give them a car.
+        if(msg.conn.connectionId > highestID)
+        {
+            Instantiate(CarInstance,transform, false);
+            highestID = msg.conn.connectionId; // Set highest id so 1 car per player
+        }
+        else
+        transform.GetChild(msg.conn.connectionId - 1).GetComponent<CarDrift>().SetButton(); // turn player
     }
 
    // public override void OnServerConnect(NetworkConnection conn) {
