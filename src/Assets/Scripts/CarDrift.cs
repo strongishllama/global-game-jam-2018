@@ -25,6 +25,9 @@ public class CarDrift : MonoBehaviour {
     [Range(0.0f, 0.2f)]
     public float m_SmoothVelocityDamp = 0.1f;
 
+    [Range(0.0f, 1.0f)]
+    public float m_SpeedMovedFromTurn = 0.5f;
+
     public Direction m_StartingDirection;
     private Vector3 m_StartingPosition;
 
@@ -44,6 +47,7 @@ public class CarDrift : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         Vector3 newVel = m_Velocity;
+        Vector3 speedTaken = newVel;
         //velocity damp
         switch (m_CurrentDirection) {
             case Direction.Up:
@@ -51,21 +55,33 @@ public class CarDrift : MonoBehaviour {
                 //left right damp
                 // newVel.x *= m_VelocityDamp;
                 newVel.x = Mathf.SmoothDamp(newVel.x, 0.0f, ref newVel.x, m_SmoothVelocityDamp);
+                if (Mathf.Abs(newVel.x) < 1.5f) {
+                    newVel.x *= .95f;
+                }
                 break;
             case Direction.Left:
             case Direction.Right:
                 //up down damp
                 newVel.y = Mathf.SmoothDamp(newVel.y, 0.0f, ref newVel.y, m_SmoothVelocityDamp);
                 //newVel.y = Mathf.Log(newVel.y) * m_MaxSpeed;
-                if(newVel.y < 1) {
-                    newVel.y *= m_VelocityDamp;
+                if(Mathf.Abs(newVel.y) < 1.5f) {
+                    newVel.y *= .95f;
                 }
                 print("Vel: "+newVel.y);
                 break;
         }
         m_Velocity = newVel;
+        speedTaken -= newVel;
+        {
+            float tempY = speedTaken.y;
+            speedTaken.y = speedTaken.x;
+            speedTaken.x = -tempY;
+            speedTaken *= m_SpeedMovedFromTurn;
+            
+        }
+        print(speedTaken);
 
-        m_Velocity += transform.up * m_Acceleration * Time.deltaTime;
+        m_Velocity += transform.up * m_Acceleration * Time.deltaTime + speedTaken;
 
         if (m_Velocity.magnitude > m_MaxSpeed) {
             m_Velocity = m_Velocity.normalized * m_MaxSpeed;
