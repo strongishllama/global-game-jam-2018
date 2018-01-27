@@ -21,8 +21,8 @@ public class NetworkTransmitter:NetworkManager {
     }
 
     public void SendInput() {
-        NetworkServer.SendToAll(InputMessageType.Input,new InputMessage());
-        mClient.Send(MsgType.Highest, new InputMessage());
+        //NetworkServer.SendToAll(InputMessageType.Input,new InputMessage());
+        mClient.Send(MsgType.Highest + 1, new InputMessage());
     }
 
     public override void OnClientConnect(NetworkConnection conn) {
