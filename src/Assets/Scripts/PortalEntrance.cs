@@ -49,18 +49,13 @@ public class PortalEntrance : MonoBehaviour
 
     private IEnumerator ActivatePortal(Collider other)
     {
-        if (!portalIsActive)
-        {
-            yield break;
-        }
-
         portalIsActive = false;
         portalEntranceEffect.SetActive(true);
         portalLight.SetActive(false);
         other.gameObject.SetActive(false);
+        other.transform.position = new Vector3(exit.position.x, exit.position.y, other.transform.position.z);
         yield return new WaitForSeconds(portalTransferDelay);
 
-        other.transform.position = exit.position;
         other.GetComponent<CarDrift>().ResetVelocityFromDirection();
         portalExitEffect.SetActive(true);
         other.gameObject.SetActive(true);

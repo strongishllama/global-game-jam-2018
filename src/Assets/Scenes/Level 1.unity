@@ -1195,6 +1195,7 @@ MonoBehaviour:
   m_Acceleration: 5
   m_MaxSpeed: 5
   m_VelocityDamp: 0.98
+  m_SmoothVelocityDamp: 0.1
   m_StartingDirection: 3
 --- !u!114 &2089798056
 MonoBehaviour:
