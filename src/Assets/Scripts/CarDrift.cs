@@ -12,6 +12,7 @@ public enum Direction {
 public class CarDrift : MonoBehaviour {
 
     bool ButtonPressed = false; public void SetButton() { ButtonPressed = true; }
+    bool m_IsNetworkedCar = false; public void SetNetworked() { m_IsNetworkedCar = true; }
     public float m_Acceleration = 5;
     public float m_MaxSpeed = 4;
 
@@ -92,7 +93,7 @@ public class CarDrift : MonoBehaviour {
 
         transform.position = transform.position + m_Velocity * Time.deltaTime;
 
-        if (Input.GetButtonDown("Fire1") || ButtonPressed) {
+        if ((Input.GetButtonDown("Fire1") && !m_IsNetworkedCar) || ButtonPressed) {
             //dog crap
             switch (m_CurrentDirection) {
                 case Direction.Up:
