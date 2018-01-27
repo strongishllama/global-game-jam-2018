@@ -1,7 +1,18 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PortalEntrance : MonoBehaviour
 {
+    [SerializeField]
+    private float portalTransferDelay = 0.3f;
+    [SerializeField]
+    private float portalCooldown = 2.0f;
+
+    [SerializeField]
+    private GameObject portalEntranceEffect;
+    [SerializeField]
+    private GameObject portalExitEffect;
+
     [SerializeField]
     private Transform exit;
 
@@ -17,7 +28,22 @@ public class PortalEntrance : MonoBehaviour
     {
         if (other.CompareTag("Player") && exit != null)
         {
-            other.transform.position = exit.position;
+            StartCoroutine(ActivatePortal(other));
         }
+    }
+
+    private IEnumerator ActivatePortal(Collider other)
+    {
+        portalEntranceEffect.SetActive(true);
+        other.gameObject.SetActive(false);
+        yield return new WaitForSeconds(portalTransferDelay);
+
+        other.transform.position = exit.position;
+        portalExitEffect.SetActive(true);
+        other.gameObject.SetActive(true);
+        yield return new WaitForSeconds(portalCooldown);
+
+        portalEntranceEffect.SetActive(false);
+        portalExitEffect.SetActive(false);
     }
 }

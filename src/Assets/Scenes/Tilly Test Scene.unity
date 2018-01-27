@@ -553,11 +553,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 114849880093632614, guid: 94b54630219130c478c658d70154d8c6,
+    - target: {fileID: 114572909349225464, guid: 94b54630219130c478c658d70154d8c6,
         type: 2}
-      propertyPath: exit
+      propertyPath: portalExitEffect
       value: 
-      objectReference: {fileID: 852790027}
+      objectReference: {fileID: 2066792156}
     - target: {fileID: 114572909349225464, guid: 94b54630219130c478c658d70154d8c6,
         type: 2}
       propertyPath: exit
@@ -650,11 +650,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!4 &852790027 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4864884881225772, guid: b79c1d2a186056e498b6281c7f39dd63,
-    type: 2}
-  m_PrefabInternal: {fileID: 1150063153}
 --- !u!1001 &1150063153
 Prefab:
   m_ObjectHideFlags: 0
@@ -766,6 +761,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1659752767}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2066792156 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1014026167953938, guid: b79c1d2a186056e498b6281c7f39dd63,
+    type: 2}
+  m_PrefabInternal: {fileID: 1150063153}
 --- !u!1001 &2086834868
 Prefab:
   m_ObjectHideFlags: 0
@@ -804,6 +804,10 @@ Prefab:
     - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266714856826896, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_Name
+      value: Level Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
