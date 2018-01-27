@@ -9,6 +9,14 @@ public class PlayerCanvas : MonoBehaviour
     [SerializeField]
     private Text timeDisplay;
 
+    private void Awake()
+    {
+        if (timeDisplay == null)
+        {
+            Debug.Log("Warning:" + gameObject.name + " does not have an time display assigned.");
+        }
+    }
+
     private void Update()
     {
         if (GameManager.instance.GameIsRunning)

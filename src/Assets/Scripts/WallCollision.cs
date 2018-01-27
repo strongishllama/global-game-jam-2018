@@ -59,8 +59,8 @@ public class WallCollision : MonoBehaviour {
     private bool TestPoint(Vector3 a_Position) {
         //could replace m_Map with the material from the hit transform
         RaycastHit hit;
-        Debug.DrawRay(a_Position, Vector3.down * m_RaycastRange);
-        if (Physics.Raycast(a_Position, Vector3.down, out hit, m_RaycastRange)) {
+        Debug.DrawRay(a_Position, Vector3.forward * m_RaycastRange);
+        if (Physics.Raycast(a_Position, Vector3.forward, out hit, m_RaycastRange)) {
             int width = Mathf.FloorToInt(m_Map.mainTexture.width * hit.textureCoord.x);
             int height = Mathf.FloorToInt(m_Map.mainTexture.height * hit.textureCoord.y);
              

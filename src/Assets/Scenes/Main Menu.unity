@@ -170,48 +170,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &639741746
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 532.6717
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 458.8313
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -120.60693
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837119432565590, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: f2c89423aca3a264ba7d7a4b6af3db8a, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1378794293
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +349,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4514658511810e74fb2620b84d563e8a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1461036692
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4048024441016258, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: be8e5129c4f99494bbfc4c8a05be7768, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1563130211
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 1563130213}
   - component: {fileID: 1563130212}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Main Menu Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PortalEntrance : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PortalEntrance : MonoBehaviour
 
     [SerializeField]
     private Transform exit;
+
+    private UnityEvent enterPortal;
 
     private void Awake()
     {
@@ -58,6 +61,7 @@ public class PortalEntrance : MonoBehaviour
         yield return new WaitForSeconds(portalTransferDelay);
 
         other.transform.position = exit.position;
+        other.GetComponent<CarDrift>().ResetVelocityFromDirection();
         portalExitEffect.SetActive(true);
         other.gameObject.SetActive(true);
         yield return new WaitForSeconds(portalCooldown);
@@ -66,5 +70,13 @@ public class PortalEntrance : MonoBehaviour
         portalExitEffect.SetActive(false);
         portalLight.SetActive(true);
         portalIsActive = true;
+    }
+
+    public UnityEvent EnterPortal
+    {
+        get
+        {
+            return enterPortal;
+        }
     }
 }
