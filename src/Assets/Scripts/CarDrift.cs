@@ -35,7 +35,7 @@ public class CarDrift : MonoBehaviour {
     private GameObject carExplosion;
 
     void Start() {
-        m_CurrentDirection = LevelManager.levelOneStartDirection;
+        m_CurrentDirection = LevelManager.instance.GetCurrentLevel().dir;
         m_StartingPosition = transform.position;
         updateDirection();
 
