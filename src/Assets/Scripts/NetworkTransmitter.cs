@@ -9,8 +9,9 @@ public class NetworkTransmitter:NetworkManager {
     // Use this for initialization
     NetworkClient mClient;
     [SerializeField] InputField inputfield;
-    [SerializeField] Text text;
+    InputMessage inputMessage;
     void Start() {
+        inputMessage = new InputMessage();
         autoCreatePlayer = false;
        // mClient = StartClient();
     }
@@ -21,16 +22,23 @@ public class NetworkTransmitter:NetworkManager {
             Debug.Log("Sending message");
             SendInput();
         }
-        text.text = inputfield.text;
+
+        if (Input.GetTouch(0).phase == TouchPhase.Began) {
+            SendInput();
+        }
+
     }
-    public void NetworkStartClient() {
+    public void NetworkStartClient(GameObject button) {
         networkAddress = inputfield.text;
+        inputfield.gameObject.SetActive(false);
+        button.SetActive(false);
         mClient = StartClient();
+
     }
 
     public void SendInput() {
         //NetworkServer.SendToAll(InputMessageType.Input,new InputMessage());
-        mClient.Send(MsgType.Highest + 1,new InputMessage());
+        mClient.Send(MsgType.Highest + 1, inputMessage);
     }
 
     public override void OnClientConnect(NetworkConnection conn) {
