@@ -19,7 +19,7 @@ public class CarDrift : MonoBehaviour {
 
     private Direction m_CurrentDirection;
 
-    [Range(0.5f, 1.0f)]
+    [Range(0.9f, 1.0f)]
     public float m_VelocityDamp = 0.95f;
 
     public Direction m_StartingDirection;
