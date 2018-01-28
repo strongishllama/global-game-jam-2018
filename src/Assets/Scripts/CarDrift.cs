@@ -32,6 +32,7 @@ public class CarDrift : MonoBehaviour {
     private Vector3 m_StartingPosition;
     private Vector3 m_StartingRotation;
 
+    private int m_CurrentLapCount = 0;
     
     public int m_health = 3;
     [SerializeField]
@@ -44,6 +45,8 @@ public class CarDrift : MonoBehaviour {
         } else {
             Debug.LogWarning("Player does not have a Wall Collision Script Component");
         }
+
+        transform.position = transform.position + new Vector3(0, 0, -0.1f);
 
         m_CurrentDirection = LevelManager.instance.GetCurrentLevel().dir;
         m_StartingPosition = transform.position;
@@ -229,4 +232,15 @@ public class CarDrift : MonoBehaviour {
         }
         m_Velocity = newVel;
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.GetComponent<TrackStart>() != null) {
+            m_CurrentLapCount++;
+            if(m_CurrentLapCount == 4) {
+                FindObjectOfType<UICanvas>().winrar();
+                gameObject.SetActive(true);
+            }
+        }
+    }
+
 }
