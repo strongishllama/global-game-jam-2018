@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 938098844}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 227461547, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -2082,7 +2082,7 @@ Prefab:
     - target: {fileID: 224283441073770832, guid: 028acf78c89506e45b7ac78ae05c8e82,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -570
+      value: -87
       objectReference: {fileID: 0}
     - target: {fileID: 114276328061824076, guid: 028acf78c89506e45b7ac78ae05c8e82,
         type: 2}
@@ -2092,7 +2092,12 @@ Prefab:
     - target: {fileID: 224283441073770832, guid: 028acf78c89506e45b7ac78ae05c8e82,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 470
+      value: 195
+      objectReference: {fileID: 0}
+    - target: {fileID: 114605767969100754, guid: 028acf78c89506e45b7ac78ae05c8e82,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 028acf78c89506e45b7ac78ae05c8e82, type: 2}

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4404831534814878}
   - component: {fileID: 198634077491199014}
   - component: {fileID: 199294676763910916}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Portal Activate Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4302546981861480}
   - component: {fileID: 198566740617139480}
   - component: {fileID: 199790210066285320}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4075185728255268}
   - component: {fileID: 198935603366154682}
   - component: {fileID: 199802652427034464}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4193781748196700}
   - component: {fileID: 65310350030863054}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Portal Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4864884881225772}
   - component: {fileID: 33047073085563442}
   - component: {fileID: 23444247427073586}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 4826088283017332}
   - component: {fileID: 198368412156934440}
   - component: {fileID: 199476206993674060}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4076907852863538}
   - component: {fileID: 198506614605429466}
   - component: {fileID: 199085383667891322}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

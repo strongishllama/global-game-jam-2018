@@ -739,11 +739,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IsNetworkedCar: 0
-  m_Acceleration: 5
-  m_MaxSpeed: 4
+  m_Acceleration: 6
+  m_MaxSpeed: 5
   m_VelocityDamp: 0.95
-  m_SmoothVelocityDamp: 0.1
-  m_SpeedMovedFromTurn: 0.5
+  m_SmoothVelocityDamp: 0.12
+  m_SpeedMovedFromTurn: 0.36
   m_health: 3
   carExplosion: {fileID: 1645608971708332, guid: 39cd147cb2a89b24d86550f4e555ec2a,
     type: 2}
