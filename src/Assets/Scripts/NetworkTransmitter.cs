@@ -15,6 +15,9 @@ public class NetworkTransmitter:NetworkManager {
     ReceiveBroadcast broadcastReceiver;
 
     void Start() {
+        #if UNITY_ANDROID
+        Screen.orientation = ScreenOrientation.Landscape;
+        #endif
         networkPort = 7776;
         inputMessage = new InputMessage();
         autoCreatePlayer = false;
