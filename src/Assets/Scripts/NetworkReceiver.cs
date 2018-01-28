@@ -106,6 +106,8 @@ public class NetworkReceiver:NetworkManager {
 
     void OnSceneLoad(Scene scene,LoadSceneMode mode) {
         if(scene.buildIndex == 0) {
+            StopHost();
+            StopServer();
             Destroy(this.gameObject);
         }
     }
