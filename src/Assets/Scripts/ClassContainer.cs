@@ -43,6 +43,7 @@ public class ReceiveBroadcast:NetworkDiscovery {
 
     public override void OnReceivedBroadcast(string fromAddress,string data) {
         if(!connected) {
+            showGUI = false;
             mManager.networkAddress = fromAddress;
             Debug.LogError(fromAddress);
             mManager.StartConnection();

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using UnityEngine.SceneManagement;
 public class NetworkReceiver:NetworkManager {
     NetworkClient mClient;
     int highestID = 0;
@@ -25,6 +25,7 @@ public class NetworkReceiver:NetworkManager {
         NetworkServer.RegisterHandler(MsgType.Highest + 1,HandleMessage);
         NetworkServer.RegisterHandler(MsgType.Connect,OnConnected);
         this.gameObject.AddComponent<BroadcastMessage>();
+        SceneManager.activeSceneChanged += OnSceneLoad();
     }
 
     public string LocalIpAddress() {
@@ -56,7 +57,7 @@ public class NetworkReceiver:NetworkManager {
     void OnConnected(NetworkMessage msg) {
 
         //If new highest ID means a new player has joined. Give them a car.
-        if(msg.conn.connectionId > highestID) {
+        if(msg.conn.connectionId > highestID && highestID <= 4) {
             GameObject NewCar = Instantiate(PlayerCars[msg.conn.connectionId - 1],GetSpawnPoint(),PlayerCars[msg.conn.connectionId - 1].transform.rotation);
 
             NewCar.GetComponent<CarDrift>().SetNetworked();
@@ -71,10 +72,10 @@ public class NetworkReceiver:NetworkManager {
         message.color = Color.blue;
         break;
         case 2:
-        message.color = new Color32(255, 165, 0, 255);
+        message.color = new Color32(255,165,0,255);
         break;
         case 3:
-        message.color = new Color32(128, 0, 128, 255);
+        message.color = new Color32(128,0,128,255);
         break;
         case 4:
         message.color = Color.red;
@@ -91,12 +92,9 @@ public class NetworkReceiver:NetworkManager {
         Debug.Log("Error");
     }
 
-    public Vector3 GetSpawnPoint()
-    {
-        for (int i = 0; i < spawnPoints.Count; i++)
-        {
-            if (spawnPoints[i].IsEmpty)
-            {
+    public Vector3 GetSpawnPoint() {
+        for(int i = 0;i < spawnPoints.Count;i++) {
+            if(spawnPoints[i].IsEmpty) {
                 spawnPoints[i].IsEmpty = false;
                 return spawnPoints[i].transform.position;
             }
@@ -106,5 +104,10 @@ public class NetworkReceiver:NetworkManager {
         return Vector3.zero;
     }
 
+    void OnSceneLoad(Scene scene,LoadSceneMode mode) {
+        if(scene.buildIndex == 0) {
+            Destroy(this.gameObject);
+        }
+    }
 }
 
