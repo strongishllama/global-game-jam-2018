@@ -35,15 +35,16 @@ public class InputMessageType {
 public class ReceiveBroadcast:NetworkDiscovery {
     NetworkTransmitter mManager;
     public bool connected;
+
     public void Awake() {
+        showGUI = false;
         mManager = this.GetComponent<NetworkTransmitter>();
-        showGUI = true;
         //Initialize();
     }
 
     public override void OnReceivedBroadcast(string fromAddress,string data) {
         if(!connected) {
-            showGUI = false;
+
             mManager.networkAddress = fromAddress;
             Debug.LogError(fromAddress);
             mManager.StartConnection();
