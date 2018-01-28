@@ -46,6 +46,8 @@ public class CarDrift : MonoBehaviour {
             Debug.LogWarning("Player does not have a Wall Collision Script Component");
         }
 
+        transform.position = transform.position + new Vector3(0, 0, -0.1f);
+
         m_CurrentDirection = LevelManager.instance.GetCurrentLevel().dir;
         m_StartingPosition = transform.position;
         m_StartingRotation = transform.rotation.eulerAngles;
