@@ -7,7 +7,7 @@ using UnityEngine.Serialization;
 public class WallCollision : MonoBehaviour {
 
     public Transform m_WheelHolderPosition;
-
+    int[] WheelHashTable = new int[] { 0, 0, 0, 0 }; public int[] GetWheelTable() { return WheelHashTable; }
     [Range(0, 10)]
     public float m_RaycastRange = 5;
 
@@ -37,16 +37,22 @@ public class WallCollision : MonoBehaviour {
         bool previousOnRoad = m_CurrentlyOnRoad;
         int hits = 0;
         for(int i = 0; i < m_WheelHolderPosition.childCount; i++) {
+            string wheelname = m_WheelHolderPosition.GetChild(i).name;
             if (TestPoint(m_WheelHolderPosition.GetChild(i).position + m_Offset)) {
                 hits++;
+                WheelHashTable[i] = 1;
+            }
+            else
+            {
+                WheelHashTable[i] = 0;
             }
         }
         m_CurrentlyOnRoad = hits < (m_WheelHolderPosition.childCount - m_WheelsAllowedOffRoad) || hits == 0;
 
         if (m_CurrentlyOnRoad) {
-            if (previousOnRoad != m_CurrentlyOnRoad) {
+            //if (previousOnRoad != m_CurrentlyOnRoad) {
                 m_LeaveRoadEvent.Invoke();
-            }
+           // }
         }
     }
 

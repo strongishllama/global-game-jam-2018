@@ -738,6 +738,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a101210ea520b154c869bec434ccf75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_BounceForce: -1
   m_IsNetworkedCar: 0
   m_Acceleration: 6
   m_MaxSpeed: 5

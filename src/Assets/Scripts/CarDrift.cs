@@ -10,7 +10,8 @@ public enum Direction {
 }
 
 public class CarDrift : MonoBehaviour {
-
+    [Range(0.0f, -1.0f)]
+    public float m_BounceForce;
     bool ButtonPressed = false; public void SetButton() { ButtonPressed = true; }
     public bool m_IsNetworkedCar = false; public void SetNetworked() { m_IsNetworkedCar = true; }
     public float m_Acceleration = 5;
@@ -189,28 +190,120 @@ public class CarDrift : MonoBehaviour {
 
     public void playerOffTracks() {
 
-       //if (m_health > 0 && false)
-       //{
-       //    m_health--;
-       //
-       //    // put wheel bounce code here.
-       //    // surly not
-       //}
-       //else
-       //{
+        if (m_health > 0)
+        {
+            m_health--;
+            int[] Wheels = GetComponent<WallCollision>().GetWheelTable();
+
+            Vector3 test;
+                float BounceVelocity;
+                if (Wheels[0] == 1 && Wheels[2] == 1)
+                {//front
+                    
+                    switch (m_CurrentDirection)
+                    {
+                        case Direction.Up:
+                        case Direction.Down:
+                            BounceVelocity = m_Velocity.y * m_BounceForce;
+                       test = new Vector3(m_Velocity.x, BounceVelocity, 0);
+                            m_Velocity = test;
+                            Debug.Log("Front up");
+                            break;
+
+                        case Direction.Left:
+                        case Direction.Right:
+                            BounceVelocity = m_Velocity.x * m_BounceForce;
+                            test = new Vector3(BounceVelocity, m_Velocity.y, 0);
+                            m_Velocity = test;
+                            Debug.Log("Front right");
+                            break;
+                    }
+                }
+                else if (Wheels[0] == 1 && Wheels[1] == 1)
+                {//left
+                    switch (m_CurrentDirection)
+                    {
+                        case Direction.Up:
+                        case Direction.Down:
+                            BounceVelocity = m_Velocity.x * m_BounceForce;
+                        test = new Vector3(BounceVelocity, m_Velocity.y, 0);
+                        m_Velocity = test;
+                        Debug.Log("left up");
+                        break;
+
+                        case Direction.Left:
+                        case Direction.Right:
+                            BounceVelocity = m_Velocity.y * m_BounceForce;
+                        test = new Vector3(m_Velocity.x, BounceVelocity, 0);
+                        m_Velocity = test;
+                        Debug.Log("left right");
+                        break;
+                    }
+                }
+                else if (Wheels[2] == 1 && Wheels[3] == 1)
+                {//right
+                    switch (m_CurrentDirection)
+                    {
+                        case Direction.Up:
+                        case Direction.Down:
+                            BounceVelocity = m_Velocity.x * m_BounceForce;
+                        test = new Vector3(BounceVelocity, m_Velocity.y, 0);
+                        m_Velocity = test;
+                        Debug.Log("right up");
+                        break;
+
+                        case Direction.Left:
+                        case Direction.Right:
+                            BounceVelocity = m_Velocity.y * m_BounceForce;
+                        test = new Vector3(m_Velocity.x, BounceVelocity, 0);
+                        m_Velocity = test;
+                        Debug.Log("right right");
+                        break;
+                    }
+                }
+                else if (Wheels[1] == 1 && Wheels[3] == 1)
+                {//back
+                    switch (m_CurrentDirection)
+                    {
+                        case Direction.Up:
+                        case Direction.Down:
+                            BounceVelocity = m_Velocity.y * m_BounceForce;
+                        test =  new Vector3(m_Velocity.x, BounceVelocity, 0);
+                        m_Velocity = test;
+                        Debug.Log("back up");
+                        break;
+
+                        case Direction.Left:
+                        case Direction.Right:
+                            BounceVelocity = m_Velocity.x * m_BounceForce;
+                        test = new Vector3(BounceVelocity, m_Velocity.y, 0);
+                        m_Velocity = test;
+                        Debug.Log("back right");
+                        break;
+                    }
+                }
+
+            
+        }
+
+
+        else
+        {
             if (carExplosion != null)
             {
                 GameObject explosion = Instantiate(carExplosion, transform.position, transform.rotation);
                 Destroy(explosion, 4.0f);
-            }else {
+            }
+            else
+            {
                 Debug.LogWarning("Car Explosion missing");
             }
             m_CurrentDirection = LevelManager.instance.m_levelinfo[0].dir;
             transform.position = m_StartingPosition;
             m_Velocity = Vector3.zero;
             updateDirection();
-        //}
-    }
+        }
+}
 
 
     public void ResetVelocityFromDirection()
