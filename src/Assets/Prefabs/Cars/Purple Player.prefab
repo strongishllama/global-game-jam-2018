@@ -340,7 +340,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1611413197463864}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.1227314, y: -3.0725732, z: 0.00000047683716}
+  m_LocalPosition: {x: -1.3317472, y: -3.3451207, z: 0.00000047683716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4540148693584872}
@@ -771,7 +771,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WheelHolderPosition: {fileID: 4104478932703726}
   m_RaycastRange: 5
-  m_WheelsAllowedOffRoad: 3
+  m_WheelsAllowedOffRoad: 1
   m_LeaveRoadEvent:
     m_PersistentCalls:
       m_Calls: []

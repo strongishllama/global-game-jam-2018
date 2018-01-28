@@ -201,7 +201,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1802840742440086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.6221224, y: -3.4754891, z: 0.00000071525574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4919290844453104}
@@ -232,7 +232,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children: []
   m_Father: {fileID: 4693866444474864}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4529870698750586
 Transform:
@@ -272,8 +272,8 @@ Transform:
   m_Children:
   - {fileID: 4758606529386504}
   - {fileID: 4933650127245686}
-  - {fileID: 4479679229984242}
   - {fileID: 4711362850532582}
+  - {fileID: 4479679229984242}
   m_Father: {fileID: 4919290844453104}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -288,7 +288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: -1}
   m_Children: []
   m_Father: {fileID: 4693866444474864}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4758606529386504
 Transform:
@@ -721,7 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WheelHolderPosition: {fileID: 4693866444474864}
   m_RaycastRange: 5
-  m_WheelsAllowedOffRoad: 3
+  m_WheelsAllowedOffRoad: 1
   m_LeaveRoadEvent:
     m_PersistentCalls:
       m_Calls: []
