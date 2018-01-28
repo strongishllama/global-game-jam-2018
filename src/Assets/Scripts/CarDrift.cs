@@ -38,6 +38,9 @@ public class CarDrift : MonoBehaviour {
     [SerializeField]
     private GameObject carExplosion;
 
+    [SerializeField]
+    private List<AudioClip> carExplosions = new List<AudioClip>();
+
     void Start() {
         WallCollision wc = GetComponent<WallCollision>();
         if (wc != null) {
@@ -205,6 +208,8 @@ public class CarDrift : MonoBehaviour {
             }else {
                 Debug.LogWarning("Car Explosion missing");
             }
+
+            Camera.main.GetComponent<AudioSource>().PlayOneShot(carExplosions[Random.Range(0, carExplosions.Count)]);
             m_CurrentDirection = LevelManager.instance.m_levelinfo[0].dir;
             transform.position = m_StartingPosition;
             m_Velocity = Vector3.zero;
