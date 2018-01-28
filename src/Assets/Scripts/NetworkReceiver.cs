@@ -25,7 +25,7 @@ public class NetworkReceiver:NetworkManager {
         NetworkServer.RegisterHandler(MsgType.Highest + 1,HandleMessage);
         NetworkServer.RegisterHandler(MsgType.Connect,OnConnected);
         this.gameObject.AddComponent<BroadcastMessage>();
-        SceneManager.activeSceneChanged += OnSceneLoad();
+        SceneManager.sceneLoaded += OnSceneLoad;
     }
 
     public string LocalIpAddress() {
