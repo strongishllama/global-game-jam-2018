@@ -1,4 +1,6 @@
-# Global Game Jam 2018
+# Global Game Jam 2018 - Big Drifts
+
+![](README_Images/Feature_Image.png)
 
 This project was created by four programmers, [James Owen](https://github.com/jamesy012), [Lincoln Gardner](https://github.com/KrunkZzZ), [Louis Nguyen](https://github.com/Hallaation) & myself from conception to completion over a 48 hour period.
 
