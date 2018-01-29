@@ -9,4 +9,4 @@ This can be played single or multiplayer, using a keyboard or smartphone as a co
 
 The Unity game and android controller builds can be found below.
 
-(Uploads will be done shortly)
+https://strongishllama.itch.io/big-drifts
